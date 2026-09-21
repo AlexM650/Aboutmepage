@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Mckee - Admin Dashboard</title>
+  <meta name="description" content="Admin dashboard for Alex Mckee's web development portfolio to monitor, manage, and reply to received contact submissions.">
+  <meta property="og:title" content="Alex Mckee - Admin Dashboard">
+  <meta property="og:description" content="Admin dashboard for Alex Mckee's web development portfolio to monitor, manage, and reply to received contact submissions.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" id="brandLink">
+        <span class="brand-badge">AM</span>
+        <div>
+          <span class="brand-text">Alex Mckee</span>
+          <span class="brand-subtitle">Web Development Portfolio</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Universal Site Navigation (Admin active) -->
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link" id="navHome">Home</a></li>
+          <li><a href="media.html" class="nav-link" id="navMedia">Media</a></li>
+          <li><a href="future.html" class="nav-link" id="navFuture">Future</a></li>
+          <li><a href="interests.html" class="nav-link" id="navInterests">Pets</a></li>
+          <li><a href="projects.html" class="nav-link" id="navProjects">Hobbies</a></li>
+          <li><a href="admin.html" class="nav-link active" aria-current="page" id="navAdmin">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent" style="padding-bottom: 4rem;">
+    <!-- Page Header Banner -->
+    <section class="page-header-banner" id="adminHeaderBanner">
+      <div class="container">
+        <span class="section-subtitle" style="color: var(--color-blue-400);">Backend &amp; Storage</span>
+        <h1 class="page-title">Admin Dashboard</h1>
+        <p style="color: #cbd5e1; max-width: 650px; font-size: 1.05rem;">
+          Review, filter, and manage messages submitted through the public contact form. Submissions are persistently stored in <code>data/contactReceived.json</code>.
+        </p>
+      </div>
+    </section>
+
+    <div class="container" style="margin-top: 2rem;">
+      <!-- Dashboard Controls & Status -->
+      <div class="admin-header-bar">
+        <div>
+          <h2 style="font-size: 1.5rem; color: var(--color-black);">Received Contact Submissions</h2>
+          <p id="adminLoadingStatus" style="font-size: 0.9rem; color: var(--color-mid-gray);">Loading messages...</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-primary" id="refreshBtn">
+            ↻ Refresh Data
+          </button>
+          <button type="button" class="btn btn-dark" id="exportJsonBtn">
+            ↓ Download JSON
+          </button>
+        </div>
+      </div>
+
+      <!-- Key Metrics Stats Cards -->
+      <div class="admin-stats-row" id="adminStatsRow">
+        <div class="stat-box">
+          <div class="stat-box-title">Total Submissions</div>
+          <div class="stat-box-number" id="totalCount">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-title">Pending Replies</div>
+          <div class="stat-box-number blue" id="pendingCount">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-title">Replied</div>
+          <div class="stat-box-number" style="color: #10b981;" id="repliedCount">0</div>
+        </div>
+      </div>
+
+      <!-- Submissions Table Container -->
+      <div class="admin-table-card">
+        <!-- Toolbar: Filters & Search -->
+        <div class="admin-table-toolbar">
+          <div class="filter-btn-group">
+            <button type="button" class="filter-btn active" data-filter="all">All Messages</button>
+            <button type="button" class="filter-btn" data-filter="pending">Pending</button>
+            <button type="button" class="filter-btn" data-filter="replied">Replied</button>
+          </div>
+
+          <div style="flex: 1; max-width: 320px;">
+            <input type="text" id="adminSearch" class="form-input" placeholder="Search by name, email, or text..." style="min-height: 38px; padding: 0.4rem 0.85rem;">
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="admin-table" id="adminSubmissionsTable">
+            <thead>
+              <tr>
+                <th style="width: 140px;">Date &amp; Time</th>
+                <th>Sender Name</th>
+                <th>Email Address</th>
+                <th>Reason</th>
+                <th>Message Content</th>
+                <th style="width: 100px;">Status</th>
+                <th style="width: 140px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <!-- Rendered dynamically by admin.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty state message -->
+        <div id="adminEmptyMessage" style="display: none; padding: 3rem; text-align: center; color: var(--color-mid-gray);">
+          <p style="font-size: 1.1rem; font-weight: 600; color: var(--color-charcoal);">No contact submissions found.</p>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+            When visitors submit the form on the <a href="index.html#contactSection" style="color: var(--color-blue-600); text-decoration: underline;">Home page</a>, their messages will automatically appear here.
+          </p>
+        </div>
+      </div>
+
+      <!-- Educational / Developer Reference Box for Alex -->
+      <div style="margin-top: 2.5rem; background-color: var(--color-surface-light); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.75rem;">
+        <h3 style="font-size: 1.15rem; color: var(--color-black); margin-bottom: 0.5rem;">ℹ️ Course Learning Architecture Note</h3>
+        <p style="font-size: 0.95rem; color: var(--color-mid-gray); line-height: 1.6;">
+          This dashboard communicates with the Node.js Express server using standard <code>fetch()</code> API calls:
+        </p>
+        <ul style="margin-top: 0.75rem; margin-left: 1.5rem; font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.6;">
+          <li><code>POST /api/contact</code> receives submissions from the Home page contact form.</li>
+          <li><code>GET /api/contact</code> reads the array stored in <code>data/contactReceived.json</code>.</li>
+          <li><code>PATCH /api/contact/:id/reply</code> toggles the <code>replied</code> flag and updates <code>repliedAt</code>.</li>
+          <li><code>DELETE /api/contact/:id</code> allows message deletion when managing your inbox.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Alex Mckee</h4>
+          <p>High school web development student portfolio. Created as part of an introductory web development course focusing on semantic HTML, CSS styling, client and server JavaScript, and persistent App Storage.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Website Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="media.html">Media Gallery</a></li>
+            <li><a href="future.html">Future Goals</a></li>
+            <li><a href="interests.html">Pets</a></li>
+            <li><a href="projects.html">Hobbies</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alex Mckee. All rights reserved.</p>
+        <p>Built with HTML, CSS, JavaScript, and Express.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Admin JavaScript -->
+  <script src="admin.js"></script>
+</body>
+</html>

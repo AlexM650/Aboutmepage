@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <clipPath id="circleClip">
+      <circle cx="250" cy="250" r="246" />
+    </clipPath>
+  </defs>
+  <!-- Background Circle -->
+  <circle cx="250" cy="250" r="248" fill="url(#bgGrad)" stroke="#3b82f6" stroke-width="4" />
+  
+  <g clip-path="url(#circleClip)">
+    <!-- Silhouette Head -->
+    <circle cx="250" cy="190" r="85" fill="#334155" />
+    <!-- Silhouette Body -->
+    <path d="M110 460 C110 320, 175 285, 250 285 C325 285, 390 320, 390 460 Z" fill="#1e293b" />
+    <path d="M125 460 C125 335, 180 300, 250 300 C320 300, 375 335, 375 460 Z" fill="#24334a" />
+  </g>
+</svg>

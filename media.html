@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Mckee - Media Gallery</title>
+  <meta name="description" content="Media page showcasing photos, video demonstrations, and digital assets by high school student Alex Mckee.">
+  <meta property="og:title" content="Alex Mckee - Media Gallery">
+  <meta property="og:description" content="Media page showcasing photos, video demonstrations, and digital assets by high school student Alex Mckee.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" id="brandLink">
+        <span class="brand-badge">AM</span>
+        <div>
+          <span class="brand-text">Alex Mckee</span>
+          <span class="brand-subtitle">Web Development Portfolio</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Universal Site Navigation (Media active) -->
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link" id="navHome">Home</a></li>
+          <li><a href="media.html" class="nav-link active" aria-current="page" id="navMedia">Media</a></li>
+          <li><a href="future.html" class="nav-link" id="navFuture">Future</a></li>
+          <li><a href="interests.html" class="nav-link" id="navInterests">Pets</a></li>
+          <li><a href="projects.html" class="nav-link" id="navProjects">Hobbies</a></li>
+          <li><a href="admin.html" class="nav-link" id="navAdmin">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <section class="media-gallery-section" id="mediaGallerySection">
+      <div class="container">
+        <h1 class="media-gallery-title">Media Gallery</h1>
+
+        <!-- 7 Photo Boxes (3 from example + 4 additional holder boxes) -->
+        <div class="gallery-photo-grid" id="galleryPhotoGrid">
+          <!-- Photo Box 1: Baseball Highlights -->
+          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Baseball Highlights" data-index="0" data-src="assets/images/media-baseball.jpg" data-title="Baseball Highlights">
+            <div class="photo-box-image-wrap">
+              <img src="assets/images/media-baseball.jpg" alt="Baseball Highlights" loading="lazy" referrerPolicy="no-referrer">
+              <div class="photo-expand-overlay">
+                <span class="expand-cue-pill"><span aria-hidden="true">⤢</span> Click to Expand</span>
+              </div>
+            </div>
+            <div class="photo-box-footer">
+              <h2 class="photo-box-title">Baseball Highlights</h2>
+            </div>
+          </article>
+
+          <!-- Photo Box 2: Fishing Catch -->
+          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Fishing Catch" data-index="1" data-src="assets/images/media-fishing.jpg" data-title="Fishing Catch">
+            <div class="photo-box-image-wrap">
+              <img src="assets/images/media-fishing.jpg" alt="Fishing Catch" loading="lazy" referrerPolicy="no-referrer">
+              <div class="photo-expand-overlay">
+                <span class="expand-cue-pill"><span aria-hidden="true">⤢</span> Click to Expand</span>
+              </div>
+            </div>
+            <div class="photo-box-footer">
+              <h2 class="photo-box-title">Fishing Catch</h2>
+            </div>
+          </article>
+
+          <!-- Photo Box 3: Picture of the Ocean -->
+          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Picture of the Ocean" data-index="2" data-src="assets/images/media-ocean.jpg" data-title="Picture of the Ocean">
+            <div class="photo-box-image-wrap">
+              <img src="assets/images/media-ocean.jpg" alt="Picture of the Ocean" loading="lazy" referrerPolicy="no-referrer">
+              <div class="photo-expand-overlay">
+                <span class="expand-cue-pill"><span aria-hidden="true">⤢</span> Click to Expand</span>
+              </div>
+            </div>
+            <div class="photo-box-footer">
+              <h2 class="photo-box-title">Picture of the Ocean</h2>
+            </div>
+          </article>
+
+          <!-- Photo Box 4: Coastal Sunset (Holder) -->
+          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Coastal Sunset" data-index="3" data-src="assets/images/media-sunset.jpg" data-title="Coastal Sunset">
+            <div class="photo-box-image-wrap">
+              <img src="assets/images/media-sunset.jpg" alt="Coastal Sunset" loading="lazy" referrerPolicy="no-referrer">
+              <div class="photo-expand-overlay">
+                <span class="expand-cue-pill"><span aria-hidden="true">⤢</span> Click to Expand</span>
+              </div>
+            </div>
+            <div class="photo-box-footer">
+              <h2 class="photo-box-title">Coastal Sunset</h2>
+            </div>
+          </article>
+
+          <!-- Photo Box 5: Outdoor Trail & Hike (Holder) -->
+          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Outdoor Trail &amp; Hike" data-index="4" data-src="assets/images/media-hiking.jpg" data-title="Outdoor Trail &amp; Hike">
+            <div class="photo-box-image-wrap">
+              <img src="assets/images/media-hiking.jpg" alt="Outdoor Trail and Hike" loading="lazy" referrerPolicy="no-referrer">
+              <div class="photo-expand-overlay">
+                <span class="expand-cue-pill"><span aria-hidden="true">⤢</span> Click to Expand</span>
+              </div>
+            </div>
+            <div class="photo-box-footer">
+              <h2 class="photo-box-title">Outdoor Trail &amp; Hike</h2>
+            </div>
+          </article>
+
+          <!-- Photo Box 6: Batting Practice (Holder) -->
+          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Batting Practice" data-index="5" data-src="assets/images/media-batting.jpg" data-title="Batting Practice">
+            <div class="photo-box-image-wrap">
+              <img src="assets/images/media-batting.jpg" alt="Batting Practice" loading="lazy" referrerPolicy="no-referrer">
+              <div class="photo-expand-overlay">
+                <span class="expand-cue-pill"><span aria-hidden="true">⤢</span> Click to Expand</span>
+              </div>
+            </div>
+            <div class="photo-box-footer">
+              <h2 class="photo-box-title">Batting Practice</h2>
+            </div>
+          </article>
+
+          <!-- Photo Box 7: Golden Retriever Outdoor (Holder) -->
+          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Golden Retriever" data-index="6" data-src="assets/images/media-dog.jpg" data-title="Golden Retriever">
+            <div class="photo-box-image-wrap">
+              <img src="assets/images/media-dog.jpg" alt="Golden Retriever" loading="lazy" referrerPolicy="no-referrer">
+              <div class="photo-expand-overlay">
+                <span class="expand-cue-pill"><span aria-hidden="true">⤢</span> Click to Expand</span>
+              </div>
+            </div>
+            <div class="photo-box-footer">
+              <h2 class="photo-box-title">Golden Retriever</h2>
+            </div>
+          </article>
+        </div>
+
+        <!-- Social Media Posts Section (from example screenshot) -->
+        <div class="social-media-section">
+          <div class="social-posts-grid">
+            <!-- Social Media Post 1 -->
+            <div class="social-post-card">
+              <div class="social-post-header">
+                <h3>Social Media Post</h3>
+              </div>
+              <div class="social-post-preview">
+                <img src="assets/images/social-meme-1.jpg" alt="Sports team celebration meme" loading="lazy" referrerPolicy="no-referrer">
+                <div class="social-meme-caption">
+                  how hyped coach will get when a practice for a sport THEY signed up for gets canceled
+                </div>
+              </div>
+              <div class="social-post-footer">
+                <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-tiktok-link">
+                  Watch on TikTok <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Social Media Post 2 -->
+            <div class="social-post-card">
+              <div class="social-post-header">
+                <h3>Social Media Post</h3>
+              </div>
+              <div class="social-post-preview">
+                <img src="assets/images/social-meme-2.jpg" alt="Practice reaction meme" loading="lazy" referrerPolicy="no-referrer">
+                <div class="social-meme-caption">
+                  when theres 20 mins left of practice then coach says "alright..."
+                </div>
+              </div>
+              <div class="social-post-footer">
+                <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-tiktok-link">
+                  Watch on TikTok <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expand Photo Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Photo Lightbox Viewer">
+      <div class="lightbox-backdrop" id="lightboxBackdrop" tabindex="-1"></div>
+      <div class="lightbox-content-wrapper">
+        <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close photo view">&times;</button>
+        <button class="lightbox-nav-btn lightbox-prev-btn" id="lightboxPrevBtn" aria-label="Previous photo">&#10094;</button>
+        <button class="lightbox-nav-btn lightbox-next-btn" id="lightboxNextBtn" aria-label="Next photo">&#10095;</button>
+        <div class="lightbox-img-box">
+          <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+        <div class="lightbox-bottom-bar">
+          <span class="lightbox-caption-title" id="lightboxCaption"></span>
+          <span class="lightbox-counter" id="lightboxCounter"></span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Alex Mckee</h4>
+          <p>High school web development student portfolio. Created as part of an introductory web development course focusing on semantic HTML, CSS styling, client and server JavaScript, and persistent App Storage.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Website Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="media.html">Media Gallery</a></li>
+            <li><a href="future.html">Future Goals</a></li>
+            <li><a href="interests.html">Pets</a></li>
+            <li><a href="projects.html">Hobbies</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alex Mckee. All rights reserved.</p>
+        <p>Built with HTML, CSS, JavaScript, and Express.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

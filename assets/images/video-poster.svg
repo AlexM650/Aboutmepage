@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" rx="16" fill="#0f172a" stroke="#3b82f6" stroke-width="2" />
+  <circle cx="300" cy="170" r="50" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
+  <polygon points="288,148 322,170 288,192" fill="#60a5fa" />
+  <text x="300" y="270" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#ffffff">VIDEO MEDIA PLACEHOLDER</text>
+  <text x="300" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">[School Project Demo or Student Video Introduction]</text>
+  <text x="300" y="330" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#3b82f6">Place video files in assets/videos/ or embed below</text>
+</svg>

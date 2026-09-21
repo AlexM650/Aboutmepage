@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to My Page</title>
+  <meta name="description" content="Welcome to my website! I'm a high school student getting into web development. Outside of tech, I spend most of my time playing baseball, fishing, and spending time by the ocean.">
+  <meta property="og:title" content="Welcome to My Page">
+  <meta property="og:description" content="Welcome to my website! I'm a high school student getting into web development. Outside of tech, I spend most of my time playing baseball, fishing, and spending time by the ocean.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" id="brandLink">
+        <span class="brand-badge">AM</span>
+        <div>
+          <span class="brand-text">Alex Mckee</span>
+          <span class="brand-subtitle">Web Development Portfolio</span>
+        </div>
+      </a>
+
+      <!-- Mobile Navigation Toggle -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Universal Site Navigation (All 6 pages with distinct active states) -->
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link active" aria-current="page" id="navHome">Home</a></li>
+          <li><a href="media.html" class="nav-link" id="navMedia">Media</a></li>
+          <li><a href="future.html" class="nav-link" id="navFuture">Future</a></li>
+          <li><a href="interests.html" class="nav-link" id="navInterests">Pets</a></li>
+          <li><a href="projects.html" class="nav-link" id="navProjects">Hobbies</a></li>
+          <li><a href="admin.html" class="nav-link" id="navAdmin">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- Hero Section with Student Name as H1 and Prominent Photo Above the Fold -->
+    <section class="hero-section" id="heroSection">
+      <div class="container hero-grid">
+        <div class="hero-intro">
+          <!-- Requirement: Student's full name as the <h1> -->
+          <h1 class="student-name" id="studentHeading">Alex Mckee</h1>
+          <p class="hero-tagline">High School Web Development Student & Aspiring Creator</p>
+          
+          <div class="hero-bio-container">
+            <span class="hero-bio-title" id="welcomeTitle">Welcome to My Page</span>
+            <p id="welcomeDescription" style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.65; margin-top: 0.5rem;">
+              Welcome to my website! I'm a high school student getting into web development. Outside of tech, I spend most of my time with my pets, exploring the outdoors, and learning new skills.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Requirement: Photo of the student clearly showing their face prominently displayed above the fold -->
+        <div class="hero-photo-wrapper">
+          <div class="student-photo-card" id="studentPhotoCard">
+            <img src="assets/images/student-profile.jpg" onerror="if(this.src.indexOf('student-portrait.svg') === -1) this.src='assets/images/student-portrait.svg';" alt="Portrait photo of student Alex Mckee" id="studentPhoto" referrerPolicy="no-referrer">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Social Media Section -->
+    <section class="contact-section" id="contactSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Get In Touch</span>
+          <h2 class="section-title">Contact &amp; Connect</h2>
+          <p class="section-intro">Reach out to Alex Mckee through the contact form below or connect across social channels.</p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Left: Social Links & Direct Email -->
+          <div class="contact-info-panel" id="contactInfoPanel">
+            <div>
+              <h3>Connect With Alex</h3>
+              <p>Feel free to reach out with project questions, opportunities, feedback, or collaborative ideas. All form messages are securely saved to the persistent backend storage.</p>
+            </div>
+
+            <!-- Email Link -->
+            <div class="form-group">
+              <span class="hero-bio-title">Direct Email</span>
+              <a href="mailto:alexmckee650@gmail.com" class="contact-direct-link" id="emailContactLink">
+                <span>✉</span>
+                <span>alexmckee650@gmail.com</span>
+              </a>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="social-links-block" id="socialLinksBlock">
+              <h4>Social Media Profiles</h4>
+              <div class="social-pill-group">
+                <a href="https://github.com/AlexM650" target="_blank" rel="noopener noreferrer" class="social-pill" id="socialGithub">
+                  <span>GitHub</span> AlexM650
+                </a>
+                <a href="https://www.tiktok.com/@65_Mck33_65" target="_blank" rel="noopener noreferrer" class="social-pill" id="socialTiktok">
+                  <span>TikTok</span> @65_Mck33_65
+                </a>
+                <a href="https://www.instagram.com/65_Mck33_65" target="_blank" rel="noopener noreferrer" class="social-pill" id="socialInstagram">
+                  <span>Instagram</span> @65_Mck33_65
+                </a>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--color-border-dark);">
+              <small style="color: #94a3b8; font-size: 0.8rem;">
+                Looking for received messages? Visit the <a href="admin.html" style="color: var(--color-blue-400); text-decoration: underline;">Admin Dashboard</a> to view submissions.
+              </small>
+            </div>
+          </div>
+
+          <!-- Right: Contact Form -->
+          <div class="contact-form-card" id="contactFormCard">
+            <h3>Send a Message</h3>
+            <p class="form-subtext">Fill in the required information below to submit a message directly to Alex.</p>
+
+            <!-- Success Feedback Container -->
+            <div class="feedback-box feedback-success" id="formSuccess" role="alert">
+              <span>✓</span>
+              <span id="successText">Thank you! Your message was submitted successfully.</span>
+            </div>
+
+            <!-- Error Feedback Container -->
+            <div class="feedback-box feedback-error" id="formError" role="alert">
+              <span>⚠️</span>
+              <span id="errorText">Please check the required fields.</span>
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="form-row-two">
+                <!-- First Name -->
+                <div class="form-group">
+                  <label for="firstName" class="form-label">
+                    First Name <span class="required-asterisk">*</span>
+                  </label>
+                  <input type="text" id="firstName" name="firstName" class="form-input" placeholder="e.g. Jamie" required autocomplete="given-name">
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-group">
+                  <label for="lastName" class="form-label">
+                    Last Name <span class="required-asterisk">*</span>
+                  </label>
+                  <input type="text" id="lastName" name="lastName" class="form-input" placeholder="e.g. Smith" required autocomplete="family-name">
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email" class="form-label">
+                  Email Address <span class="required-asterisk">*</span>
+                </label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="e.g. jamie@example.com" required autocomplete="email">
+              </div>
+
+              <!-- Reason for Contact: Comment, Question, Partnership, Opportunity, Other -->
+              <div class="form-group">
+                <label for="reason" class="form-label">
+                  Reason for Contact <span class="required-asterisk">*</span>
+                </label>
+                <select id="reason" name="reason" class="form-select" required>
+                  <option value="" disabled selected>-- Select a Reason --</option>
+                  <option value="Comment">Comment</option>
+                  <option value="Question">Question</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Opportunity">Opportunity</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="message" class="form-label">
+                  Message <span class="required-asterisk">*</span>
+                </label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Type your message here..." required></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Alex Mckee</h4>
+          <p>High school web development student portfolio. Created as part of an introductory web development course focusing on semantic HTML, CSS styling, client and server JavaScript, and persistent App Storage.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Website Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="media.html">Media Gallery</a></li>
+            <li><a href="future.html">Future Goals</a></li>
+            <li><a href="interests.html">Pets</a></li>
+            <li><a href="projects.html">Hobbies</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alex Mckee. All rights reserved.</p>
+        <p>Built with HTML, CSS, JavaScript, and Express.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Client JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
