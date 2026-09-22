@@ -19,6 +19,6 @@ command on port 5000.
 - `/` — home and contact form
 - `/media.html` — media gallery
 - `/future.html` — future goals
-- `/interests.html` — pets
-- `/projects.html` — hobbies
+- `/pets.html` — pets
+- `/hobbies.html` — hobbies
 - `/admin.html` — contact submission dashboard
