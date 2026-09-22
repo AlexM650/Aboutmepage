@@ -39,110 +39,50 @@
   </header>
 
   <main id="mainContent">
-    <!-- Page Header Banner -->
-    <section class="page-header-banner" id="petsHeaderBanner">
+    <section class="media-gallery-section pets-gallery-section" id="petsSection">
       <div class="container">
-        <span class="section-subtitle" style="color: var(--color-blue-400);">Companion Animals</span>
-        <h1 class="page-title">My Pets &amp; Animal Companions</h1>
-        <p style="color: #cbd5e1; max-width: 650px; font-size: 1.05rem;">
-          Meet my beloved pets, our daily care routines, favorite outdoor activities, and creative pet enrichment projects.
+        <span class="section-subtitle">Companion Animals</span>
+        <h1 class="media-gallery-title">My Pets &amp; Animal Companions</h1>
+        <p class="pets-gallery-intro">
+          Meet my pets, our favorite routines, and the outdoor time we share.
         </p>
-      </div>
-    </section>
 
-    <!-- Pets Grid Section -->
-    <section class="biography-section" id="petsSection">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Animal Companions</span>
-          <h2 class="section-title">My Pets &amp; Pet Projects</h2>
-          <p class="section-intro">A showcase of my companion animals, our daily routines together, and hands-on pet enrichment projects.</p>
-        </div>
+        <div class="gallery-photo-grid pets-gallery-grid" id="petsGrid">
+          <article class="photo-box-card pet-box-card" id="petBusterCard">
+            <div class="photo-box-image-wrap pet-card-visual">
+              <span class="pet-card-emoji" aria-hidden="true">🐕</span>
+              <span class="pet-card-type">Companion Profile</span>
+            </div>
+            <div class="photo-box-footer pet-card-footer">
+              <h2 class="photo-box-title">Buster</h2>
+              <p class="pet-card-description">My energetic Golden / Lab mix who loves fetch, tug, and long trail walks.</p>
+              <span class="pet-card-detail">Age 3 • Favorite game: Fetch</span>
+            </div>
+          </article>
 
-        <div class="card-grid-three" id="petsGrid">
-          <!-- Pet 1: Buster -->
-          <div class="info-card" id="petBusterCard">
-            <div class="info-card-header">
-              <div class="card-icon-badge">🐕</div>
-              <h3 style="font-size: 1.2rem; color: var(--color-black);">Buster (Golden / Lab Mix)</h3>
+          <article class="photo-box-card pet-box-card" id="petLunaCard">
+            <div class="photo-box-image-wrap pet-card-visual">
+              <span class="pet-card-emoji" aria-hidden="true">🐈</span>
+              <span class="pet-card-type">Companion Profile</span>
             </div>
-            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
-              An energetic, loyal 3-year-old companion who loves chasing tennis balls, long neighborhood trail walks, and greeting everyone with boundless excitement.
-            </p>
-            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
-              <strong>Companion Profile:</strong> Age 3 • Golden / Lab Mix • Favorite game: Fetch &amp; Tug.
+            <div class="photo-box-footer pet-card-footer">
+              <h2 class="photo-box-title">Luna</h2>
+              <p class="pet-card-description">My curious tuxedo cat who loves sunny windows, feather toys, and keyboard naps.</p>
+              <span class="pet-card-detail">Age 2 • Favorite spot: Sunny perches</span>
             </div>
-          </div>
+          </article>
 
-          <!-- Pet 2: Luna -->
-          <div class="info-card" id="petLunaCard">
-            <div class="info-card-header">
-              <div class="card-icon-badge">🐈</div>
-              <h3 style="font-size: 1.2rem; color: var(--color-black);">Luna (Tuxedo Cat)</h3>
+          <article class="photo-box-card pet-box-card" id="petWalksCard">
+            <div class="photo-box-image-wrap pet-card-visual">
+              <span class="pet-card-emoji" aria-hidden="true">🦮</span>
+              <span class="pet-card-type">Outdoor Routine</span>
             </div>
-            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
-              A curious, affectionate 2-year-old tuxedo cat who loves sunbathing on warm window sills, chasing feather wands, and curling up right beside my keyboard.
-            </p>
-            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
-              <strong>Companion Profile:</strong> Age 2 • Tuxedo Shorthair • Favorite spot: Sunny window perches.
+            <div class="photo-box-footer pet-card-footer">
+              <h2 class="photo-box-title">Daily Walks &amp; Trail Runs</h2>
+              <p class="pet-card-description">Morning and afternoon walks, local nature trails, and dog-park playtime with Buster.</p>
+              <span class="pet-card-detail">Two walks daily • Exercise &amp; socialization</span>
             </div>
-          </div>
-
-          <!-- Pet Hobby 1: Outdoor Adventures -->
-          <div class="info-card" id="petWalksCard">
-            <div class="info-card-header">
-              <div class="card-icon-badge">🦮</div>
-              <h3 style="font-size: 1.2rem; color: var(--color-black);">Daily Walks &amp; Trail Runs</h3>
-            </div>
-            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
-              Taking Buster on morning and afternoon walks around the neighborhood, exploring local nature trails, and visiting the dog park for off-leash playtime.
-            </p>
-            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
-              <strong>Active Pet Hobby:</strong> 2x daily trail walks, park socialization, and exercise routines.
-            </div>
-          </div>
-
-          <!-- Pet Hobby 2: Trick Training -->
-          <div class="info-card" id="petTrainingCard">
-            <div class="info-card-header">
-              <div class="card-icon-badge">🎾</div>
-              <h3 style="font-size: 1.2rem; color: var(--color-black);">Trick &amp; Agility Training</h3>
-            </div>
-            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
-              Practicing positive-reinforcement obedience drills, leash manners, and fun tricks including sit, paw shake, high-five, and waiting patiently at doors.
-            </p>
-            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
-              <strong>Skill Building:</strong> Positive reinforcement, trick practice, and agility cues.
-            </div>
-          </div>
-
-          <!-- Pet Project 1: DIY Enrichment Toys -->
-          <div class="info-card" id="petDiyCard">
-            <div class="info-card-header">
-              <div class="card-icon-badge">🦴</div>
-              <h3 style="font-size: 1.2rem; color: var(--color-black);">DIY Enrichment Projects</h3>
-            </div>
-            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
-              Building homemade treat puzzles, tying snuffle mats from fleece scraps, and setting up simple backyard agility jumps to keep my pets mentally stimulated.
-            </p>
-            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
-              <strong>Pet Projects:</strong> Snuffle mats, wooden puzzle feeders, and DIY backyard hurdles.
-            </div>
-          </div>
-
-          <!-- Pet Project 2: Shelter Volunteering -->
-          <div class="info-card" id="petShelterCard">
-            <div class="info-card-header">
-              <div class="card-icon-badge">🐾</div>
-              <h3 style="font-size: 1.2rem; color: var(--color-black);">Shelter Volunteering</h3>
-            </div>
-            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
-              Volunteering at the local animal shelter on weekends—helping walk rescue dogs awaiting homes, socializing kittens, and assisting with community adoption days.
-            </p>
-            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
-              <strong>Community Care:</strong> Dog walking, kennel enrichment, and adoption event support.
-            </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>

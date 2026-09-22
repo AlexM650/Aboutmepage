@@ -1059,6 +1059,71 @@ h1.page-title {
   letter-spacing: -0.02em;
 }
 
+.pets-gallery-section {
+  min-height: calc(100vh - 84px);
+}
+
+.pets-gallery-intro {
+  color: #cbd5e1;
+  max-width: 650px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: -1rem 0 2.5rem;
+}
+
+.pets-gallery-grid {
+  margin-bottom: 0;
+}
+
+.pet-card-visual {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(59, 130, 246, 0.3), transparent 35%),
+    linear-gradient(145deg, #172554, #0f172a 70%);
+}
+
+.pet-card-emoji {
+  font-size: 5.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.35));
+}
+
+.pet-card-type {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  border-radius: 9999px;
+  color: #bfdbfe;
+  background: rgba(15, 23, 42, 0.65);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pet-card-footer {
+  text-align: left;
+}
+
+.pet-card-description {
+  color: #cbd5e1;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0.65rem 0 0.75rem;
+}
+
+.pet-card-detail {
+  color: #60a5fa;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
 .gallery-photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
