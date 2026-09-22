@@ -1061,9 +1061,39 @@ h1.page-title {
 
 .gallery-photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
   margin-bottom: 3.5rem;
+}
+
+/* Position 7th photo box directly below the middle photo column for proportional symmetry */
+.photo-box-card:nth-child(7),
+.photo-box-card.photo-box-center {
+  grid-column: 2;
+}
+
+@media (max-width: 900px) {
+  .gallery-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .photo-box-card:nth-child(7),
+  .photo-box-card.photo-box-center {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 440px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .photo-box-card:nth-child(7),
+  .photo-box-card.photo-box-center {
+    grid-column: auto;
+    max-width: 100%;
+  }
 }
 
 /* Individual Photo Box */

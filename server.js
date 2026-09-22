@@ -343,13 +343,19 @@ app.post('/api/upload-profile', async (req, res) => {
 });
 
 // --------------------------------------------------------------------------
-// CHOICE PAGES REDIRECTS / COMPATIBILITY
+// CHOICE PAGES & ALIAS REDIRECTS / COMPATIBILITY
 // --------------------------------------------------------------------------
-// Redirect original choice1.html & choice2.html to their renamed descriptive filenames
-app.get('/choice1.html', (req, res) => res.redirect(301, '/interests.html'));
-app.get('/choice1', (req, res) => res.redirect(301, '/interests.html'));
-app.get('/choice2.html', (req, res) => res.redirect(301, '/projects.html'));
-app.get('/choice2', (req, res) => res.redirect(301, '/projects.html'));
+// Redirect original choice1.html & choice2.html into hobbies.html and pets.html
+app.get('/choice1.html', (req, res) => res.redirect(301, '/hobbies.html'));
+app.get('/choice1', (req, res) => res.redirect(301, '/hobbies.html'));
+app.get('/choice2.html', (req, res) => res.redirect(301, '/pets.html'));
+app.get('/choice2', (req, res) => res.redirect(301, '/pets.html'));
+app.get('/projects.html', (req, res) => res.redirect(301, '/hobbies.html'));
+app.get('/projects', (req, res) => res.redirect(301, '/hobbies.html'));
+app.get('/interests.html', (req, res) => res.redirect(301, '/pets.html'));
+app.get('/interests', (req, res) => res.redirect(301, '/pets.html'));
+app.get('/hobbies', (req, res) => res.redirect(301, '/hobbies.html'));
+app.get('/pets', (req, res) => res.redirect(301, '/pets.html'));
 
 // Static files (HTML, CSS, JS, Assets)
 app.use(express.static(__dirname));

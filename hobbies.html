@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Mckee - Hobbies</title>
+  <meta name="description" content="Explore Alex Mckee's favorite hobbies: baseball pitching, freshwater and ocean fishing, coastal exploration, coding, and outdoor adventures.">
+  <meta property="og:title" content="Alex Mckee - Hobbies">
+  <meta property="og:description" content="Explore Alex Mckee's favorite hobbies: baseball pitching, freshwater and ocean fishing, coastal exploration, coding, and outdoor adventures.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Universal Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" id="brandLink">
+        <span class="brand-badge">AM</span>
+        <div>
+          <span class="brand-text">Alex Mckee</span>
+          <span class="brand-subtitle">Web Development Portfolio</span>
+        </div>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Universal Site Navigation (Hobbies active) -->
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link" id="navHome">Home</a></li>
+          <li><a href="media.html" class="nav-link" id="navMedia">Media</a></li>
+          <li><a href="future.html" class="nav-link" id="navFuture">Future</a></li>
+          <li><a href="hobbies.html" class="nav-link active" aria-current="page" id="navHobbies">Hobbies</a></li>
+          <li><a href="pets.html" class="nav-link" id="navPets">Pets</a></li>
+          <li><a href="admin.html" class="nav-link" id="navAdmin">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- Page Header Banner -->
+    <section class="page-header-banner" id="hobbiesHeaderBanner">
+      <div class="container">
+        <span class="section-subtitle" style="color: var(--color-blue-400);">Passions &amp; Pastimes</span>
+        <h1 class="page-title">My Hobbies &amp; Interests</h1>
+        <p style="color: #cbd5e1; max-width: 650px; font-size: 1.05rem;">
+          Outside of class and schoolwork, here are the sports, outdoor adventures, and creative activities I spend most of my time pursuing.
+        </p>
+      </div>
+    </section>
+
+    <!-- Hobbies Grid Section -->
+    <section class="biography-section" id="hobbiesSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">What I Love Doing</span>
+          <h2 class="section-title">Sports, Outdoors &amp; Tech</h2>
+          <p class="section-intro">From the baseball diamond to freshwater lakes and coding terminals, here is a snapshot of my primary hobbies.</p>
+        </div>
+
+        <div class="card-grid-three" id="hobbiesGrid">
+          <!-- Hobby 1: Baseball -->
+          <div class="info-card" id="hobbyBaseballCard">
+            <div class="info-card-header">
+              <div class="card-icon-badge">⚾</div>
+              <h3 style="font-size: 1.2rem; color: var(--color-black);">Baseball &amp; Pitching</h3>
+            </div>
+            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
+              Pitching and playing team baseball throughout the year. I focus on pitch mechanics, velocity consistency, bullpen sessions, and team communication on the mound.
+            </p>
+            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
+              <strong>Key Focus:</strong> Pitching rotation, fastball control, conditioning, and team games.
+            </div>
+          </div>
+
+          <!-- Hobby 2: Fishing -->
+          <div class="info-card" id="hobbyFishingCard">
+            <div class="info-card-header">
+              <div class="card-icon-badge">🎣</div>
+              <h3 style="font-size: 1.2rem; color: var(--color-black);">Bass &amp; Shore Fishing</h3>
+            </div>
+            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
+              Freshwater largemouth bass fishing on local ponds and lakes, as well as saltwater pier casting. I enjoy experimenting with different lures, topwater frogs, and reading water currents.
+            </p>
+            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
+              <strong>Favorite Spots:</strong> Local ponds, freshwater reservoirs, and coastal night casting.
+            </div>
+          </div>
+
+          <!-- Hobby 3: Ocean & Coastal Life -->
+          <div class="info-card" id="hobbyOceanCard">
+            <div class="info-card-header">
+              <div class="card-icon-badge">🌊</div>
+              <h3 style="font-size: 1.2rem; color: var(--color-black);">Ocean &amp; Coastal Life</h3>
+            </div>
+            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
+              Spending time along the shoreline, exploring beaches, watching the surf, and catching night coastal views where the city lights reflect across the ocean waves.
+            </p>
+            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
+              <strong>Highlights:</strong> Evening shoreline walks, coastal scenery, and peaceful ocean breezes.
+            </div>
+          </div>
+
+          <!-- Hobby 4: Web Development & Coding -->
+          <div class="info-card" id="hobbyCodingCard">
+            <div class="info-card-header">
+              <div class="card-icon-badge">💻</div>
+              <h3 style="font-size: 1.2rem; color: var(--color-black);">Web Development &amp; Coding</h3>
+            </div>
+            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
+              Building interactive websites and exploring web design. I enjoy creating semantic HTML layouts, writing modern responsive CSS styling, and programming interactive JavaScript widgets.
+            </p>
+            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
+              <strong>Tech Stack:</strong> HTML5, CSS3, JavaScript, Node.js / Express, and UI styling.
+            </div>
+          </div>
+
+          <!-- Hobby 5: Outdoor Hiking & Trails -->
+          <div class="info-card" id="hobbyHikingCard">
+            <div class="info-card-header">
+              <div class="card-icon-badge">🥾</div>
+              <h3 style="font-size: 1.2rem; color: var(--color-black);">Hiking &amp; Trail Exploring</h3>
+            </div>
+            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
+              Exploring regional nature reserves, woodland walking trails, and state parks. Getting outside helps recharge focus, stay active, and appreciate nature.
+            </p>
+            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
+              <strong>Activities:</strong> Trail runs, hill climbs, nature walks, and weekend park hikes.
+            </div>
+          </div>
+
+          <!-- Hobby 6: Dog Training & Outdoor Play -->
+          <div class="info-card" id="hobbyDogPlayCard">
+            <div class="info-card-header">
+              <div class="card-icon-badge">🐕</div>
+              <h3 style="font-size: 1.2rem; color: var(--color-black);">Dog Training &amp; Agility</h3>
+            </div>
+            <p style="color: var(--color-mid-gray); font-size: 0.95rem;">
+              Working on agility hurdles, obedience training, and endurance fetch sessions in the backyard and local parks with Buster, my golden/lab companion.
+            </p>
+            <div style="background-color: var(--color-surface-subtle); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 2px solid var(--color-blue-600); font-size: 0.85rem; color: #475569;">
+              <strong>Routine:</strong> Daily fetch drills, leash manners, hurdle jumps, and positive reinforcement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Alex Mckee</h4>
+          <p>High school web development student portfolio. Created as part of an introductory web development course focusing on semantic HTML, CSS styling, client and server JavaScript, and persistent App Storage.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Website Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="media.html">Media Gallery</a></li>
+            <li><a href="future.html">Future Goals</a></li>
+            <li><a href="hobbies.html">Hobbies</a></li>
+            <li><a href="pets.html">Pets</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alex Mckee. All rights reserved.</p>
+        <p>Built with HTML, CSS, JavaScript, and Express.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

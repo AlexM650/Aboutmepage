@@ -32,8 +32,8 @@
           <li><a href="index.html" class="nav-link" id="navHome">Home</a></li>
           <li><a href="media.html" class="nav-link active" aria-current="page" id="navMedia">Media</a></li>
           <li><a href="future.html" class="nav-link" id="navFuture">Future</a></li>
-          <li><a href="interests.html" class="nav-link" id="navInterests">Pets</a></li>
-          <li><a href="projects.html" class="nav-link" id="navProjects">Hobbies</a></li>
+          <li><a href="hobbies.html" class="nav-link" id="navHobbies">Hobbies</a></li>
+          <li><a href="pets.html" class="nav-link" id="navPets">Pets</a></li>
           <li><a href="admin.html" class="nav-link" id="navAdmin">Admin</a></li>
         </ul>
       </nav>
@@ -48,7 +48,7 @@
         <!-- 7 Photo Boxes (3 from example + 4 additional holder boxes) -->
         <div class="gallery-photo-grid" id="galleryPhotoGrid">
           <!-- Photo Box 1: Baseball Highlights -->
-          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Baseball Highlights" data-index="0" data-src="assets/images/media-baseball.jpg" data-title="Baseball Highlights">
+          <article class="photo-box-card" id="photoBox1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Baseball Highlights" data-index="0" data-src="assets/images/media-baseball.jpg" data-title="Baseball Highlights">
             <div class="photo-box-image-wrap">
               <img src="assets/images/media-baseball.jpg" alt="Baseball Highlights" loading="lazy" referrerPolicy="no-referrer">
               <div class="photo-expand-overlay">
@@ -61,7 +61,7 @@
           </article>
 
           <!-- Photo Box 2: Fishing Catch -->
-          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Fishing Catch" data-index="1" data-src="assets/images/media-fishing.jpg" data-title="Fishing Catch">
+          <article class="photo-box-card" id="photoBox2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Fishing Catch" data-index="1" data-src="assets/images/media-fishing.jpg" data-title="Fishing Catch">
             <div class="photo-box-image-wrap">
               <img src="assets/images/media-fishing.jpg" alt="Fishing Catch" loading="lazy" referrerPolicy="no-referrer">
               <div class="photo-expand-overlay">
@@ -74,7 +74,7 @@
           </article>
 
           <!-- Photo Box 3: Picture of the Ocean -->
-          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Picture of the Ocean" data-index="2" data-src="assets/images/media-ocean.jpg" data-title="Picture of the Ocean">
+          <article class="photo-box-card" id="photoBox3" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Picture of the Ocean" data-index="2" data-src="assets/images/media-ocean.jpg" data-title="Picture of the Ocean">
             <div class="photo-box-image-wrap">
               <img src="assets/images/media-ocean.jpg" alt="Picture of the Ocean" loading="lazy" referrerPolicy="no-referrer">
               <div class="photo-expand-overlay">
@@ -87,7 +87,7 @@
           </article>
 
           <!-- Photo Box 4: Coastal Sunset (Holder) -->
-          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Coastal Sunset" data-index="3" data-src="assets/images/media-sunset.jpg" data-title="Coastal Sunset">
+          <article class="photo-box-card" id="photoBox4" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Coastal Sunset" data-index="3" data-src="assets/images/media-sunset.jpg" data-title="Coastal Sunset">
             <div class="photo-box-image-wrap">
               <img src="assets/images/media-sunset.jpg" alt="Coastal Sunset" loading="lazy" referrerPolicy="no-referrer">
               <div class="photo-expand-overlay">
@@ -100,7 +100,7 @@
           </article>
 
           <!-- Photo Box 5: Outdoor Trail & Hike (Holder) -->
-          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Outdoor Trail &amp; Hike" data-index="4" data-src="assets/images/media-hiking.jpg" data-title="Outdoor Trail &amp; Hike">
+          <article class="photo-box-card" id="photoBox5" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Outdoor Trail &amp; Hike" data-index="4" data-src="assets/images/media-hiking.jpg" data-title="Outdoor Trail &amp; Hike">
             <div class="photo-box-image-wrap">
               <img src="assets/images/media-hiking.jpg" alt="Outdoor Trail and Hike" loading="lazy" referrerPolicy="no-referrer">
               <div class="photo-expand-overlay">
@@ -113,7 +113,7 @@
           </article>
 
           <!-- Photo Box 6: Batting Practice (Holder) -->
-          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Batting Practice" data-index="5" data-src="assets/images/media-batting.jpg" data-title="Batting Practice">
+          <article class="photo-box-card" id="photoBox6" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Batting Practice" data-index="5" data-src="assets/images/media-batting.jpg" data-title="Batting Practice">
             <div class="photo-box-image-wrap">
               <img src="assets/images/media-batting.jpg" alt="Batting Practice" loading="lazy" referrerPolicy="no-referrer">
               <div class="photo-expand-overlay">
@@ -125,8 +125,8 @@
             </div>
           </article>
 
-          <!-- Photo Box 7: Golden Retriever Outdoor (Holder) -->
-          <article class="photo-box-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Golden Retriever" data-index="6" data-src="assets/images/media-dog.jpg" data-title="Golden Retriever">
+          <!-- Photo Box 7: Golden Retriever Outdoor (Holder - centered below the middle photo) -->
+          <article class="photo-box-card photo-box-center" id="photoBox7" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Expand photo: Golden Retriever" data-index="6" data-src="assets/images/media-dog.jpg" data-title="Golden Retriever">
             <div class="photo-box-image-wrap">
               <img src="assets/images/media-dog.jpg" alt="Golden Retriever" loading="lazy" referrerPolicy="no-referrer">
               <div class="photo-expand-overlay">
@@ -215,8 +215,8 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="media.html">Media Gallery</a></li>
             <li><a href="future.html">Future Goals</a></li>
-            <li><a href="interests.html">Pets</a></li>
-            <li><a href="projects.html">Hobbies</a></li>
+            <li><a href="hobbies.html">Hobbies</a></li>
+            <li><a href="pets.html">Pets</a></li>
             <li><a href="admin.html">Admin Dashboard</a></li>
           </ul>
         </div>
