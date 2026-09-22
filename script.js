@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initContactForm();
   highlightActiveNavLink();
-  initProfilePhotoManager();
   initMediaGalleryLightbox();
 });
 
@@ -214,20 +213,6 @@ function initContactForm() {
   function hideFeedback() {
     if (successBox) successBox.classList.remove('show');
     if (errorBox) errorBox.classList.remove('show');
-  }
-}
-
-/**
- * Profile Photo Handler
- * Loads user photo if stored in localStorage or falls back to saved server asset
- */
-function initProfilePhotoManager() {
-  const photoImg = document.getElementById('studentPhoto');
-  if (!photoImg) return;
-
-  const savedPhoto = localStorage.getItem('alexMckeeProfilePhoto');
-  if (savedPhoto) {
-    photoImg.src = savedPhoto;
   }
 }
 
