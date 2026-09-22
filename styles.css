@@ -1075,6 +1075,74 @@ h1.page-title {
   margin-bottom: 0;
 }
 
+.reference-page-section {
+  min-height: calc(100vh - 84px);
+}
+
+.reference-card-grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.future-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hobbies-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reference-card {
+  min-height: 190px;
+  padding: 2.25rem 1.5rem;
+  background: #1e293b;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.reference-card h2 {
+  margin: 0 0 1.25rem;
+  color: #f8fafc;
+  font-size: 1.65rem;
+  line-height: 1.25;
+}
+
+.reference-card p {
+  max-width: 42rem;
+  margin: 0;
+  color: #dbe4f0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.reference-card-goal h2 {
+  color: #818cf8;
+}
+
+.reference-card-centered {
+  grid-column: 1 / -1;
+  width: min(100%, 560px);
+  justify-self: center;
+}
+
+@media (max-width: 700px) {
+  .future-card-grid,
+  .hobbies-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reference-card-centered {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .reference-card {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+}
+
 .pet-card-visual {
   min-height: 220px;
   display: flex;
