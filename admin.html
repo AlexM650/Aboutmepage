@@ -132,19 +132,6 @@
         </div>
       </div>
 
-      <!-- Educational / Developer Reference Box for Alex -->
-      <div style="margin-top: 2.5rem; background-color: var(--color-surface-light); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.75rem;">
-        <h3 style="font-size: 1.15rem; color: var(--color-black); margin-bottom: 0.5rem;">ℹ️ Course Learning Architecture Note</h3>
-        <p style="font-size: 0.95rem; color: var(--color-mid-gray); line-height: 1.6;">
-          This dashboard communicates with the Node.js Express server using standard <code>fetch()</code> API calls:
-        </p>
-        <ul style="margin-top: 0.75rem; margin-left: 1.5rem; font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.6;">
-          <li><code>POST /api/contact</code> receives submissions from the Home page contact form.</li>
-          <li><code>GET /api/contact</code> reads the array stored in <code>data/contactReceived.json</code>.</li>
-          <li><code>PATCH /api/contact/:id/reply</code> toggles the <code>replied</code> flag and updates <code>repliedAt</code>.</li>
-          <li><code>DELETE /api/contact/:id</code> allows message deletion when managing your inbox.</li>
-        </ul>
-      </div>
     </div>
   </main>
 

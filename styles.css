@@ -236,15 +236,7 @@ h1.page-title {
   margin-bottom: 1.5rem;
 }
 
-.hero-bio-container {
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--color-border-dark);
-  border-radius: var(--radius-md);
-  padding: 1.5rem;
-  margin-bottom: 1.75rem;
-}
-
-.hero-bio-title {
+.contact-label {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
