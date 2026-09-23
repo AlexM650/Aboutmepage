@@ -465,6 +465,7 @@ app.get('/pets', (req, res) => res.redirect(301, '/pets.html'));
 
 // Admin HTML is gated before the static-file middleware can serve it.
 app.get(['/admin', '/admin.html'], requireAdminPage);
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // Static files (HTML, CSS, JS, Assets)
 app.use(express.static(__dirname));
