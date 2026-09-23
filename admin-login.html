@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Mckee - Admin Login</title>
+  <meta name="description" content="Sign in to the Alex Mckee portfolio admin dashboard.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="/" class="brand-link" id="brandLink">
+        <span class="brand-badge">AM</span>
+        <div>
+          <span class="brand-text">Alex Mckee</span>
+          <span class="brand-subtitle">Web Development Portfolio</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-list" id="navList">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/media.html" class="nav-link">Media</a></li>
+          <li><a href="/future.html" class="nav-link">Future</a></li>
+          <li><a href="/hobbies.html" class="nav-link">Hobbies</a></li>
+          <li><a href="/pets.html" class="nav-link">Pets</a></li>
+          <li><a href="/admin.html" class="nav-link active" aria-current="page">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-login-main">
+    <section class="admin-login-card" aria-labelledby="adminLoginTitle">
+      <span class="section-subtitle">Protected Area</span>
+      <h1 id="adminLoginTitle">Admin Login</h1>
+      <p>Enter the admin password to review contact submissions.</p>
+
+      <form id="adminLoginForm" class="admin-login-form">
+        <div class="form-group">
+          <label for="adminPassword" class="form-label">Password</label>
+          <input
+            id="adminPassword"
+            name="password"
+            class="form-input"
+            type="password"
+            autocomplete="current-password"
+            required
+            autofocus
+          >
+        </div>
+        <button type="submit" class="btn btn-primary">Enter Admin</button>
+        <p id="adminLoginStatus" class="admin-login-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alex Mckee. All rights reserved.</p>
+        <p><a href="/" class="footer-home-link">Back to Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const loginForm = document.getElementById('adminLoginForm');
+    const loginStatus = document.getElementById('adminLoginStatus');
+
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = loginForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      loginStatus.textContent = 'Checking password...';
+      loginStatus.className = 'admin-login-status';
+
+      try {
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: document.getElementById('adminPassword').value })
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Unable to sign in.');
+        }
+
+        window.location.href = '/admin.html';
+      } catch (error) {
+        loginStatus.textContent = error.message;
+        loginStatus.className = 'admin-login-status is-error';
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

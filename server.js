@@ -25,6 +25,79 @@ app.use(cors());
 app.use(express.json({ limit: '30mb' }));
 app.use(express.urlencoded({ extended: true, limit: '30mb' }));
 
+// Admin authentication configuration
+const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || '';
+const SESSION_SECRET = process.env.SESSION_SECRET || '';
+const ADMIN_SESSION_COOKIE = 'admin_session';
+const ADMIN_SESSION_MAX_AGE_SECONDS = 8 * 60 * 60;
+
+function parseCookies(cookieHeader = '') {
+  return cookieHeader.split(';').reduce((cookies, part) => {
+    const separatorIndex = part.indexOf('=');
+    if (separatorIndex === -1) return cookies;
+
+    const name = part.slice(0, separatorIndex).trim();
+    const value = part.slice(separatorIndex + 1).trim();
+    if (name) cookies[name] = decodeURIComponent(value);
+    return cookies;
+  }, {});
+}
+
+function safeEqual(left, right) {
+  const leftBuffer = Buffer.from(String(left));
+  const rightBuffer = Buffer.from(String(right));
+  return leftBuffer.length === rightBuffer.length &&
+    crypto.timingSafeEqual(leftBuffer, rightBuffer);
+}
+
+function createAdminSession() {
+  const expiresAt = Date.now() + ADMIN_SESSION_MAX_AGE_SECONDS * 1000;
+  const payload = Buffer.from(JSON.stringify({ expiresAt })).toString('base64url');
+  const signature = crypto
+    .createHmac('sha256', SESSION_SECRET)
+    .update(payload)
+    .digest('base64url');
+  return `${payload}.${signature}`;
+}
+
+function hasValidAdminSession(req) {
+  if (!ADMIN_PASSCODE || !SESSION_SECRET) return false;
+
+  const token = parseCookies(req.headers.cookie || '')[ADMIN_SESSION_COOKIE];
+  if (!token) return false;
+
+  const separatorIndex = token.lastIndexOf('.');
+  if (separatorIndex === -1) return false;
+
+  const payload = token.slice(0, separatorIndex);
+  const signature = token.slice(separatorIndex + 1);
+  const expectedSignature = crypto
+    .createHmac('sha256', SESSION_SECRET)
+    .update(payload)
+    .digest('base64url');
+
+  if (!safeEqual(signature, expectedSignature)) return false;
+
+  try {
+    const { expiresAt } = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
+    return Number.isFinite(expiresAt) && expiresAt > Date.now();
+  } catch {
+    return false;
+  }
+}
+
+function requireAdminApi(req, res, next) {
+  if (!hasValidAdminSession(req)) {
+    return res.status(401).json({ error: 'Admin authentication required.' });
+  }
+  next();
+}
+
+function requireAdminPage(req, res) {
+  const page = hasValidAdminSession(req) ? 'admin.html' : 'admin-login.html';
+  res.sendFile(path.join(__dirname, page));
+}
+
 // Object storage path configuration
 const STORAGE_OBJECT_PATH = 'data/contactReceived.json';
 const LOCAL_STORAGE_PATH = path.join(__dirname, 'data', 'contactReceived.json');
@@ -231,10 +304,43 @@ app.post('/api/contact', async (req, res) => {
 });
 
 /**
+ * POST /api/admin/login
+ * Starts an eight-hour signed admin session.
+ */
+app.post('/api/admin/login', (req, res) => {
+  if (!ADMIN_PASSCODE || !SESSION_SECRET) {
+    return res.status(503).json({ error: 'Admin access is not configured yet.' });
+  }
+
+  const password = typeof req.body?.password === 'string' ? req.body.password : '';
+  if (!safeEqual(password, ADMIN_PASSCODE)) {
+    return res.status(401).json({ error: 'Incorrect password.' });
+  }
+
+  res.setHeader(
+    'Set-Cookie',
+    `${ADMIN_SESSION_COOKIE}=${encodeURIComponent(createAdminSession())}; HttpOnly; Path=/; SameSite=Strict; Max-Age=${ADMIN_SESSION_MAX_AGE_SECONDS}`
+  );
+  return res.json({ success: true });
+});
+
+/**
+ * POST /api/admin/logout
+ * Clears the current admin session.
+ */
+app.post('/api/admin/logout', (req, res) => {
+  res.setHeader(
+    'Set-Cookie',
+    `${ADMIN_SESSION_COOKIE}=; HttpOnly; Path=/; SameSite=Strict; Max-Age=0`
+  );
+  return res.json({ success: true });
+});
+
+/**
  * GET /api/contact
  * Admin endpoint to list all contact submissions
  */
-app.get('/api/contact', async (req, res) => {
+app.get('/api/contact', requireAdminApi, async (req, res) => {
   try {
     const submissions = await readContactSubmissions();
     // Return newest first
@@ -254,7 +360,7 @@ app.get('/api/contact', async (req, res) => {
  * PATCH /api/contact/:id/reply
  * Admin endpoint to toggle or mark a submission as replied
  */
-app.patch('/api/contact/:id/reply', async (req, res) => {
+app.patch('/api/contact/:id/reply', requireAdminApi, async (req, res) => {
   try {
     const { id } = req.params;
     const submissions = await readContactSubmissions();
@@ -284,7 +390,7 @@ app.patch('/api/contact/:id/reply', async (req, res) => {
  * DELETE /api/contact/:id
  * Admin endpoint to remove a submission
  */
-app.delete('/api/contact/:id', async (req, res) => {
+app.delete('/api/contact/:id', requireAdminApi, async (req, res) => {
   try {
     const { id } = req.params;
     let submissions = await readContactSubmissions();
@@ -356,6 +462,9 @@ app.get('/interests.html', (req, res) => res.redirect(301, '/pets.html'));
 app.get('/interests', (req, res) => res.redirect(301, '/pets.html'));
 app.get('/hobbies', (req, res) => res.redirect(301, '/hobbies.html'));
 app.get('/pets', (req, res) => res.redirect(301, '/pets.html'));
+
+// Admin HTML is gated before the static-file middleware can serve it.
+app.get(['/admin', '/admin.html'], requireAdminPage);
 
 // Static files (HTML, CSS, JS, Assets)
 app.use(express.static(__dirname));

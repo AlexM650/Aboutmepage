@@ -16,6 +16,7 @@ async function initAdminDashboard() {
   const refreshBtn = document.getElementById('refreshBtn');
   const searchInput = document.getElementById('adminSearch');
   const exportBtn = document.getElementById('exportJsonBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
   const filterBtns = document.querySelectorAll('.filter-btn');
 
   if (refreshBtn) {
@@ -28,6 +29,13 @@ async function initAdminDashboard() {
 
   if (exportBtn) {
     exportBtn.addEventListener('click', () => exportDataJson());
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      window.location.href = '/admin.html';
+    });
   }
 
   filterBtns.forEach((btn) => {
@@ -48,6 +56,10 @@ async function loadSubmissions() {
 
   try {
     const res = await fetch('/api/contact');
+    if (res.status === 401) {
+      window.location.href = '/admin.html';
+      return;
+    }
     if (!res.ok) throw new Error(`Server returned ${res.status}`);
     const data = await res.json();
     contactList = data.submissions || [];
@@ -178,6 +190,10 @@ function renderTable() {
 async function toggleReplyStatus(id) {
   try {
     const res = await fetch(`/api/contact/${id}/reply`, { method: 'PATCH' });
+    if (res.status === 401) {
+      window.location.href = '/admin.html';
+      return;
+    }
     if (!res.ok) throw new Error('Failed to toggle status');
     const data = await res.json();
     
@@ -197,6 +213,10 @@ async function deleteSubmission(id) {
   if (!confirm('Are you sure you want to delete this message record?')) return;
   try {
     const res = await fetch(`/api/contact/${id}`, { method: 'DELETE' });
+    if (res.status === 401) {
+      window.location.href = '/admin.html';
+      return;
+    }
     if (!res.ok) throw new Error('Failed to delete');
     contactList = contactList.filter((item) => item.id !== id);
     updateStats();
