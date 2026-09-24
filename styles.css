@@ -1443,7 +1443,6 @@ h1.page-title {
 .social-post-preview {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
   background-color: #0b1120;
   overflow: hidden;
 }
@@ -1461,27 +1460,9 @@ h1.page-title {
 
 .social-post-preview img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
-}
-
-.social-meme-caption {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.45);
-  color: #ffffff;
-  font-family: Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 1.35rem;
-  line-height: 1.25;
-  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 0 3px 8px rgba(0,0,0,0.85);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
 }
 
 .social-post-footer {
