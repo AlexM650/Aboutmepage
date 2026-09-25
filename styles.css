@@ -245,12 +245,24 @@ h1.page-title {
 }
 
 .hero-bio-title {
+  display: block;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-blue-400);
   margin-bottom: 0.75rem;
   font-weight: 700;
+}
+
+.hero-bio-copy {
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0.5rem 0 0;
+}
+
+.hero-bio-copy + .hero-bio-copy {
+  margin-top: 0.8rem;
 }
 
 /* Prominent Student Photo above the fold */
@@ -721,6 +733,82 @@ h1.page-title {
   color: var(--color-blue-600);
 }
 
+.admin-chart-card {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--color-surface-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-chart-heading {
+  margin-bottom: 1.25rem;
+}
+
+.admin-chart-heading h2 {
+  margin: 0;
+  color: var(--color-black);
+  font-size: 1.2rem;
+}
+
+.admin-chart-heading p {
+  margin: 0.35rem 0 0;
+  color: var(--color-mid-gray);
+  font-size: 0.9rem;
+}
+
+.reason-chart {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.reason-chart-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) minmax(100px, 2.5fr) minmax(76px, auto);
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.reason-chart-label {
+  color: var(--color-charcoal);
+  font-size: 0.9rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.reason-chart-track {
+  display: block;
+  height: 0.8rem;
+  overflow: hidden;
+  background-color: var(--color-surface-subtle);
+  border-radius: var(--radius-full);
+}
+
+.reason-chart-bar {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-blue-600), var(--color-blue-400));
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.reason-chart-count {
+  color: var(--color-mid-gray);
+  font-size: 0.85rem;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.reason-chart-empty {
+  margin: 0;
+  padding: 1rem;
+  color: var(--color-mid-gray);
+  background-color: var(--color-surface-subtle);
+  border-radius: var(--radius-sm);
+}
+
 .admin-table-card {
   background-color: var(--color-surface-light);
   border: 1px solid var(--color-border);
@@ -1128,6 +1216,14 @@ h1.page-title {
   margin: -1rem 0 2.5rem;
 }
 
+.reference-page-intro {
+  max-width: 700px;
+  margin: -1rem 0 2.5rem;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
 .pets-gallery-grid {
   margin-bottom: 0;
 }
@@ -1197,6 +1293,15 @@ h1.page-title {
   .reference-card {
     min-height: auto;
     padding: 1.5rem;
+  }
+
+  .admin-chart-card {
+    padding: 1rem;
+  }
+
+  .reason-chart-row {
+    grid-template-columns: minmax(90px, 1fr) minmax(50px, 1.5fr) minmax(60px, auto);
+    gap: 0.5rem;
   }
 }
 

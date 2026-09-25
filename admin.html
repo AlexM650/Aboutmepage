@@ -75,18 +75,34 @@
       <!-- Key Metrics Stats Cards -->
       <div class="admin-stats-row" id="adminStatsRow">
         <div class="stat-box">
-          <div class="stat-box-title">Total Submissions</div>
+          <div class="stat-box-title">Total Messages</div>
           <div class="stat-box-number" id="totalCount">0</div>
         </div>
         <div class="stat-box">
-          <div class="stat-box-title">Pending Replies</div>
-          <div class="stat-box-number blue" id="pendingCount">0</div>
+          <div class="stat-box-title">New Messages</div>
+          <div class="stat-box-number blue" id="newCount">0</div>
         </div>
         <div class="stat-box">
-          <div class="stat-box-title">Replied</div>
+          <div class="stat-box-title">Replied Messages</div>
           <div class="stat-box-number" style="color: #10b981;" id="repliedCount">0</div>
         </div>
+        <div class="stat-box">
+          <div class="stat-box-title">Reply Rate</div>
+          <div class="stat-box-number" id="replyRate">0%</div>
+        </div>
       </div>
+
+      <section class="admin-chart-card" aria-labelledby="reasonChartTitle">
+        <div class="admin-chart-heading">
+          <div>
+            <h2 id="reasonChartTitle">Messages by Reason for Contact</h2>
+            <p>Counts update from the current contact submissions.</p>
+          </div>
+        </div>
+        <div class="reason-chart" id="reasonChart" role="list" aria-busy="true">
+          <p class="reason-chart-empty">Loading contact reasons…</p>
+        </div>
+      </section>
 
       <!-- Submissions Table Container -->
       <div class="admin-table-card">
@@ -94,7 +110,7 @@
         <div class="admin-table-toolbar">
           <div class="filter-btn-group">
             <button type="button" class="filter-btn active" data-filter="all">All Messages</button>
-            <button type="button" class="filter-btn" data-filter="pending">Pending</button>
+            <button type="button" class="filter-btn" data-filter="new">New</button>
             <button type="button" class="filter-btn" data-filter="replied">Replied</button>
           </div>
 
