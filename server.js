@@ -137,49 +137,7 @@ if (isReplitEnvironment) {
   }
 }
 
-/**
- * Read contact data from Replit App Storage, using local storage only when the
- * cloud object is not available. A present but unreadable cloud object is an
- * error, not a reason to serve stale local data.
- * Returns array of submissions
- */
-async function readContactSubmissions() {
-  if (replitClient) {
-    let cloudObjectExists = false;
-    try {
-      const exists = await replitClient.exists(STORAGE_OBJECT_PATH);
-      if (exists.ok && exists.value) {
-        cloudObjectExists = true;
-        const downloadResult = await replitClient.downloadAsText(STORAGE_OBJECT_PATH);
-        if (!downloadResult.ok) {
-          throw new Error('App Storage download failed');
-        }
-
-        const parsed = JSON.parse(downloadResult.value);
-        if (!Array.isArray(parsed)) {
-          throw new Error('App Storage contact data is not an array');
-        }
-        return parsed;
-      }
-
-      if (!exists.ok) {
-        warnLocalStorageFallback('Replit App Storage could not be reached');
-      } else {
-        // Do not initialize an empty cloud object here: local data may already
-        // exist and should be preserved until the first successful cloud write.
-        warnLocalStorageFallback('The App Storage contact object is not initialized');
-      }
-    } catch (error) {
-      if (cloudObjectExists) {
-        throw new Error('Failed to read contact data from App Storage');
-      }
-      warnLocalStorageFallback('Replit App Storage could not be reached');
-    }
-  } else if (isReplitEnvironment) {
-    warnLocalStorageFallback('Replit App Storage client is unavailable');
-  }
-
-  // Local development and an explicitly reported Replit fallback.
+async function readLocalContactSubmissions() {
   try {
     if (fsSync.existsSync(LOCAL_STORAGE_PATH)) {
       const fileContent = await fs.readFile(LOCAL_STORAGE_PATH, 'utf-8');
@@ -201,6 +159,59 @@ async function readContactSubmissions() {
     console.error('Error reading local contactReceived.json:', err);
     throw new Error('Failed to read contact storage');
   }
+}
+
+/**
+ * Read contact data from App Storage. If the cloud object is missing, seed it
+ * from the existing local file so records are copied unchanged rather than
+ * replaced with an empty array.
+ */
+async function readContactSubmissions() {
+  if (replitClient) {
+    let cloudObjectExists = false;
+    try {
+      const exists = await replitClient.exists(STORAGE_OBJECT_PATH);
+      if (exists.ok && exists.value) {
+        cloudObjectExists = true;
+        const downloadResult = await replitClient.downloadAsText(STORAGE_OBJECT_PATH);
+        if (!downloadResult.ok) {
+          throw new Error('App Storage download failed');
+        }
+
+        const parsed = JSON.parse(downloadResult.value);
+        if (!Array.isArray(parsed)) {
+          throw new Error('App Storage contact data is not an array');
+        }
+        return parsed;
+      }
+
+      if (exists.ok && !exists.value) {
+        const localSubmissions = await readLocalContactSubmissions();
+        const uploadResult = await replitClient.uploadFromText(
+          STORAGE_OBJECT_PATH,
+          JSON.stringify(localSubmissions, null, 2)
+        );
+        if (uploadResult.ok) {
+          return localSubmissions;
+        }
+
+        warnLocalStorageFallback('The initial App Storage write failed');
+        return localSubmissions;
+      }
+
+      warnLocalStorageFallback('Replit App Storage could not be reached');
+    } catch {
+      if (cloudObjectExists) {
+        throw new Error('Failed to read contact data from App Storage');
+      }
+      warnLocalStorageFallback('Replit App Storage could not be reached');
+    }
+  } else if (isReplitEnvironment) {
+    warnLocalStorageFallback('Replit App Storage client is unavailable');
+  }
+
+  // Local development and an explicitly reported Replit fallback.
+  return readLocalContactSubmissions();
 }
 
 /**
