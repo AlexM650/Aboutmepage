@@ -1,0 +1,1 @@
+- [App Storage provisioning](storage-provisioning.md) — installing the SDK is not enough; a default bucket must be provisioned before cloud persistence is verified.
