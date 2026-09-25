@@ -116,6 +116,16 @@ const isReplitEnvironment = Boolean(
   process.env.REPL_SLUG ||
   process.env.REPL_OWNER
 );
+let storageFallbackWarningShown = false;
+
+function warnLocalStorageFallback(reason) {
+  if (!isReplitEnvironment || storageFallbackWarningShown) return;
+
+  console.warn(
+    `[contact-storage] ${reason}; using local JSON storage, which may not persist across deployments.`
+  );
+  storageFallbackWarningShown = true;
+}
 
 if (isReplitEnvironment) {
   try {
@@ -123,39 +133,53 @@ if (isReplitEnvironment) {
     replitClient = new Client();
   } catch {
     replitClient = null;
+    warnLocalStorageFallback('Replit App Storage client could not be initialized');
   }
 }
 
 /**
- * Read contact data from storage (Replit Object Storage or local filesystem fallback)
+ * Read contact data from Replit App Storage, using local storage only when the
+ * cloud object is not available. A present but unreadable cloud object is an
+ * error, not a reason to serve stale local data.
  * Returns array of submissions
  */
 async function readContactSubmissions() {
-  // Try Replit App Storage first if running in an active Replit environment
   if (replitClient) {
+    let cloudObjectExists = false;
     try {
       const exists = await replitClient.exists(STORAGE_OBJECT_PATH);
       if (exists.ok && exists.value) {
+        cloudObjectExists = true;
         const downloadResult = await replitClient.downloadAsText(STORAGE_OBJECT_PATH);
-        if (downloadResult.ok) {
-          const parsed = JSON.parse(downloadResult.value);
-          if (Array.isArray(parsed)) {
-            // Also sync to local file for filesystem inspection
-            await fs.writeFile(LOCAL_STORAGE_PATH, JSON.stringify(parsed, null, 2), 'utf-8').catch(() => {});
-            return parsed;
-          }
+        if (!downloadResult.ok) {
+          throw new Error('App Storage download failed');
         }
-      } else if (exists.ok && !exists.value) {
-        // Initialize empty array in Replit Object Storage
-        await replitClient.uploadFromText(STORAGE_OBJECT_PATH, JSON.stringify([], null, 2));
+
+        const parsed = JSON.parse(downloadResult.value);
+        if (!Array.isArray(parsed)) {
+          throw new Error('App Storage contact data is not an array');
+        }
+        return parsed;
       }
-    } catch {
-      // Gracefully switch to filesystem without logging noisy warnings
-      replitClient = null;
+
+      if (!exists.ok) {
+        warnLocalStorageFallback('Replit App Storage could not be reached');
+      } else {
+        // Do not initialize an empty cloud object here: local data may already
+        // exist and should be preserved until the first successful cloud write.
+        warnLocalStorageFallback('The App Storage contact object is not initialized');
+      }
+    } catch (error) {
+      if (cloudObjectExists) {
+        throw new Error('Failed to read contact data from App Storage');
+      }
+      warnLocalStorageFallback('Replit App Storage could not be reached');
     }
+  } else if (isReplitEnvironment) {
+    warnLocalStorageFallback('Replit App Storage client is unavailable');
   }
 
-  // Fallback to local filesystem storage (primary for local and container environments)
+  // Local development and an explicitly reported Replit fallback.
   try {
     if (fsSync.existsSync(LOCAL_STORAGE_PATH)) {
       const fileContent = await fs.readFile(LOCAL_STORAGE_PATH, 'utf-8');
@@ -165,7 +189,10 @@ async function readContactSubmissions() {
         return [];
       }
       const parsed = JSON.parse(trimmed);
-      return Array.isArray(parsed) ? parsed : [];
+      if (!Array.isArray(parsed)) {
+        throw new Error('Local contact data is not an array');
+      }
+      return parsed;
     } else {
       await fs.writeFile(LOCAL_STORAGE_PATH, '[]', 'utf-8');
       return [];
@@ -177,43 +204,40 @@ async function readContactSubmissions() {
 }
 
 /**
- * Write contact data to storage (Replit Object Storage and local file)
+ * Write to Replit App Storage when available, otherwise use local storage with
+ * an explicit warning in Replit environments.
  */
 async function writeContactSubmissions(submissions) {
   const jsonString = JSON.stringify(submissions, null, 2);
-  let writeSuccess = false;
 
-  // Attempt write to Replit Object Storage if active
   if (replitClient) {
     try {
       const uploadResult = await replitClient.uploadFromText(STORAGE_OBJECT_PATH, jsonString);
       if (uploadResult.ok) {
-        writeSuccess = true;
+        return true;
       }
     } catch {
-      replitClient = null;
+      // Keep the client so a transient storage outage can recover on a later request.
     }
+    warnLocalStorageFallback('Replit App Storage write failed');
+  } else if (isReplitEnvironment) {
+    warnLocalStorageFallback('Replit App Storage client is unavailable');
   }
 
-  // Always write to local filesystem storage as well for durability & acceptance tests
   try {
     await fs.writeFile(LOCAL_STORAGE_PATH, jsonString, 'utf-8');
-    writeSuccess = true;
+    return true;
   } catch (err) {
     console.error('Filesystem storage write error:', err);
-    if (!writeSuccess) {
-      throw new Error('Failed to write contact storage');
-    }
+    throw new Error('Failed to write contact storage');
   }
-
-  return writeSuccess;
 }
 
 // Ensure initial file exists upon server boot
 try {
   await readContactSubmissions();
-} catch (e) {
-  // Silent fallback
+} catch {
+  console.error('[contact-storage] Initial storage check failed; contact operations may return storage errors.');
 }
 
 // --------------------------------------------------------------------------
