@@ -227,6 +227,7 @@ function initMediaGalleryLightbox() {
   const modal = document.getElementById('lightboxModal');
   const modalImg = document.getElementById('lightboxImage');
   const modalCaption = document.getElementById('lightboxCaption');
+  const modalCaptionDetail = document.getElementById('lightboxCaptionDetail');
   const modalCounter = document.getElementById('lightboxCounter');
   const closeBtn = document.getElementById('lightboxCloseBtn');
   const backdrop = document.getElementById('lightboxBackdrop');
@@ -241,6 +242,7 @@ function initMediaGalleryLightbox() {
   const photos = photoCards.map((card, idx) => ({
     src: card.getAttribute('data-src') || (card.querySelector('img') && card.querySelector('img').src) || '',
     title: card.getAttribute('data-title') || 'Gallery Photo',
+    caption: card.getAttribute('data-caption') || '',
     cardElement: card,
     index: idx
   }));
@@ -253,6 +255,7 @@ function initMediaGalleryLightbox() {
     modalImg.src = photo.src;
     modalImg.alt = photo.title;
     if (modalCaption) modalCaption.textContent = photo.title;
+    if (modalCaptionDetail) modalCaptionDetail.textContent = photo.caption;
     if (modalCounter) modalCounter.textContent = `Photo ${currentIndex + 1} of ${photos.length}`;
 
     modal.classList.add('active');

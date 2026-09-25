@@ -1504,6 +1504,13 @@ h1.page-title {
   margin: 0;
 }
 
+.photo-box-caption {
+  margin: 0.35rem 0 0;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
 /* Social Media Post Section */
 .social-media-section {
   margin-top: 1rem;
@@ -1575,6 +1582,17 @@ h1.page-title {
   background-color: #111a2a;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.social-post-caption {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .social-tiktok-link {
@@ -1591,6 +1609,46 @@ h1.page-title {
 .social-tiktok-link:hover {
   color: #93c5fd;
   text-decoration: underline;
+}
+
+.social-video-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 360px);
+  align-items: center;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 3rem auto 0;
+  padding: 1.5rem;
+  background: #162032;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.social-video-copy h2 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-video-copy p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.social-video-frame {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: #05070b;
+}
+
+.social-video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* Lightbox Modal (Expand Photo) */
@@ -1674,9 +1732,20 @@ h1.page-title {
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
+.lightbox-caption-copy {
+  display: grid;
+  gap: 0.15rem;
+}
+
 .lightbox-caption-title {
   font-weight: 700;
   color: #ffffff;
+}
+
+.lightbox-caption-detail {
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  line-height: 1.35;
 }
 
 .lightbox-counter {
